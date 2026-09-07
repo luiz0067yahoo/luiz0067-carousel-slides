@@ -1,12 +1,3 @@
-<?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
-if ( ! headers_sent() ) {
-	header( "Content-Type: text/css; charset=UTF-8" );
-}
-?>
 /* ==========================================================================
    Slide Show Block - Carousel Fidelity Styles (Editor & Frontend Preview)
    ========================================================================== */

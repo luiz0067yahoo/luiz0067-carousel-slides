@@ -1,16 +1,19 @@
-var el = wp.element.createElement;
-function getRandomArbitrary(min, max) {
-    return Math.round(Math.random() * (max - min) + min);
-}
-function getNewIdCarousel(){
-	var id='carousel'+getRandomArbitrary(0,1000);	
-	while(jQuery("#"+id).length==1)
-		id='carousel'+getRandomArbitrary(0,1000);	
-	return id;
-}
+(function(wp, $) {
+	'use strict';
+	var el = wp.element.createElement;
+	function getRandomArbitrary(min, max) {
+		return Math.round(Math.random() * (max - min) + min);
+	}
+	function getNewIdCarousel(){
+		var id = 'carousel' + getRandomArbitrary(0, 1000);	
+		while ($("#" + id).length === 1) {
+			id = 'carousel' + getRandomArbitrary(0, 1000);
+		}
+		return id;
+	}
 
-wp.blocks.registerBlockType('cms-adm/slide-show', {
-	title: 'Slide Show',		// Block name visible to user
+	wp.blocks.registerBlockType('luiz0067/carousel-slides', {
+	title: 'luiz0067 Carousel Slides',		// Block name visible to user
 	icon: 'slides',	// Toolbar icon can be either using WP Dashicons or custom SVG
 	category: 'media',	// Under which category the block would appear
 	description : 'Inserir as imagens para apresentação do slide show' ,
@@ -22,8 +25,8 @@ wp.blocks.registerBlockType('cms-adm/slide-show', {
 		attributes: {
 			id: 'carousel-template',
 			url: [
-				'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=1000&q=80',
-				'https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1000&q=80'
+				"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231e3c72'/%3E%3Cstop offset='100%25' stop-color='%232a5298'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='450' fill='url(%23g1)'/%3E%3Ccircle cx='400' cy='225' r='70' fill='rgba(255,255,255,0.1)'/%3E%3Cpolygon points='380,195 435,225 380,255' fill='rgba(255,255,255,0.7)'/%3E%3C/svg%3E",
+				"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%236a11cb'/%3E%3Cstop offset='100%25' stop-color='%232575fc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='450' fill='url(%23g2)'/%3E%3Ccircle cx='400' cy='225' r='70' fill='rgba(255,255,255,0.1)'/%3E%3Cpolygon points='380,195 435,225 380,255' fill='rgba(255,255,255,0.7)'/%3E%3C/svg%3E"
 			],
 			title: [
 				'Slide 1',
@@ -827,7 +830,8 @@ wp.blocks.registerBlockType('cms-adm/slide-show', {
 				)
 			)
 		);  
-	}	
-});
+	});
+})(window.wp, window.jQuery);
+
 
 

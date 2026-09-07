@@ -1,5 +1,5 @@
-=== Carousel Block Slide Show ===
-Contributors: luiz0067yahoo
+=== luiz0067 Carousel Slides ===
+Contributors: luiz0067
 Tags: carousel, bootstrap, block, gutenberg, slider
 Requires at least: 6.0
 Tested up to: 7.1
@@ -20,13 +20,27 @@ A modern and intuitive WordPress plugin that adds a native Gutenberg block for c
 
 1. Download the plugin and upload the files to your WordPress plugins directory (`/wp-content/plugins/`).
 2. In the WordPress administration panel, go to Plugins > Installed Plugins.
-3. Locate Carousel Block Slide Show and click Activate.
+3. Locate luiz0067 Carousel Slides and click Activate.
 
 == Screenshots ==
 
-1. Visualização do bloco Carousel Block Slide Show no editor Gutenberg e no frontend.
+1. Visualização do bloco luiz0067 Carousel Slides no editor Gutenberg e no frontend.
 
 == Changelog ==
 
 = 1.0.0 =
 * Initial release.
+
+== Credits ==
+
+This plugin bundles the following third-party open source software:
+
+* Bootstrap v5.3.8
+  - Author: The Bootstrap Authors
+  - Source: https://getbootstrap.com/
+  - License: MIT License (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+
+* Font Awesome Free v6.5.2
+  - Author: Fonticons, Inc.
+  - Source: https://fontawesome.com/
+  - License: Icons - CC BY 4.0, Fonts - SIL OFL 1.1, Code - MIT License (https://fontawesome.com/license/free)
