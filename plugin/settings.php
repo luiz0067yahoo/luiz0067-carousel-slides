@@ -62,7 +62,7 @@ add_action( 'admin_menu', 'luiz0067_carousel_add_admin_menu' );
  */
 function luiz0067_carousel_add_action_links( $links ) {
 	$settings_url  = admin_url( 'options-general.php?page=luiz0067-carousel-settings' );
-	$settings_link = '<a href="' . esc_url( $settings_url ) . '">' . esc_html__( 'Settings', 'carousel-block-slide-show' ) . '</a>';
+	$settings_link = '<a href="' . esc_url( $settings_url ) . '">' . esc_html__( 'Settings', 'luiz0067-carousel-slides' ) . '</a>';
 	array_unshift( $links, $settings_link );
 	return $links;
 }
@@ -88,23 +88,23 @@ function luiz0067_carousel_render_settings_page() {
 				?>
 				
 				<h2 style="margin-top: 0; padding-bottom: 10px; border-bottom: 1px solid #eee;">
-					<?php esc_html_e( 'Block Editor Language / Idioma do Bloco', 'carousel-block-slide-show' ); ?>
+					<?php esc_html_e( 'Block Editor Language / Idioma do Bloco', 'luiz0067-carousel-slides' ); ?>
 				</h2>
 
 				<p style="color: #646970; font-size: 14px; margin-bottom: 20px;">
-					<?php esc_html_e( 'Select the language displayed in the Gutenberg block editor interface:', 'carousel-block-slide-show' ); ?>
+					<?php esc_html_e( 'Select the language displayed in the Gutenberg block editor interface:', 'luiz0067-carousel-slides' ); ?>
 				</p>
 
 				<table class="form-table" role="presentation" style="margin-top: 0;">
 					<tbody>
 						<tr>
 							<th scope="row" style="padding-top: 10px;">
-								<label for="luiz0067_carousel_language"><strong><?php esc_html_e( 'Language / Idioma', 'carousel-block-slide-show' ); ?></strong></label>
+								<label for="luiz0067_carousel_language"><strong><?php esc_html_e( 'Language / Idioma', 'luiz0067-carousel-slides' ); ?></strong></label>
 							</th>
 							<td style="padding-top: 10px;">
 								<select name="luiz0067_carousel_language" id="luiz0067_carousel_language" style="min-width: 260px; height: 36px; border-radius: 4px;">
 									<option value="auto" <?php selected( $current_lang, 'auto' ); ?>>
-										<?php esc_html_e( 'Auto (WordPress Default / Detect)', 'carousel-block-slide-show' ); ?>
+										<?php esc_html_e( 'Auto (WordPress Default / Detect)', 'luiz0067-carousel-slides' ); ?>
 									</option>
 									<option value="pt-br" <?php selected( $current_lang, 'pt-br' ); ?>>
 										Português (Brasil)
@@ -117,14 +117,14 @@ function luiz0067_carousel_render_settings_page() {
 									</option>
 								</select>
 								<p class="description" style="margin-top: 8px;">
-									<?php esc_html_e( 'Choose a specific language to override WordPress locale in the block editor.', 'carousel-block-slide-show' ); ?>
+									<?php esc_html_e( 'Choose a specific language to override WordPress locale in the block editor.', 'luiz0067-carousel-slides' ); ?>
 								</p>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 
-				<?php submit_button( esc_html__( 'Save Changes', 'carousel-block-slide-show' ), 'primary', 'submit', true, array( 'style' => 'margin-top: 15px;' ) ); ?>
+				<?php submit_button( esc_html__( 'Save Changes', 'luiz0067-carousel-slides' ), 'primary', 'submit', true, array( 'style' => 'margin-top: 15px;' ) ); ?>
 			</form>
 		</div>
 	</div>
