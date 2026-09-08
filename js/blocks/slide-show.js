@@ -1,6 +1,11 @@
 (function(wp, $) {
 	'use strict';
 	var el = wp.element.createElement;
+	var i18n = window.luiz0067_carousel_i18n || {};
+	function __(key, fallback) {
+		return (i18n && i18n[key]) ? i18n[key] : (fallback || key);
+	}
+
 	function getRandomArbitrary(min, max) {
 		return Math.round(Math.random() * (max - min) + min);
 	}
@@ -13,10 +18,10 @@
 	}
 
 	wp.blocks.registerBlockType('luiz0067/carousel-slides', {
-	title: 'luiz0067 Carousel Slides',		// Block name visible to user
+	title: __('block_title', 'luiz0067 Carousel Slides'),		// Block name visible to user
 	icon: 'slides',	// Toolbar icon can be either using WP Dashicons or custom SVG
 	category: 'media',	// Under which category the block would appear
-	description : 'Inserir as imagens para apresentação do slide show' ,
+	description: __('block_description', 'Inserir as imagens para apresentação do slide show'),
 	
 	supports: {
 		multiple: true,
@@ -29,12 +34,12 @@
 				"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%236a11cb'/%3E%3Cstop offset='100%25' stop-color='%232575fc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='450' fill='url(%23g2)'/%3E%3Ccircle cx='400' cy='225' r='70' fill='rgba(255,255,255,0.1)'/%3E%3Cpolygon points='380,195 435,225 380,255' fill='rgba(255,255,255,0.7)'/%3E%3C/svg%3E"
 			],
 			title: [
-				'Slide 1',
-				'Slide 2'
+				__('example_slide_1_title', 'Slide 1'),
+				__('example_slide_2_title', 'Slide 2')
 			],
 			description: [
-				'<p>Descrição do Slide 1</p>',
-				'<p>Descrição do Slide 2</p>'
+				__('example_slide_1_desc', '<p>Descrição do Slide 1</p>'),
+				__('example_slide_2_desc', '<p>Descrição do Slide 2</p>')
 			],
 			objectFit: [
 				'cover',
@@ -94,13 +99,13 @@
 			}
 
 			var gallery_items_frame = wp.media.frames.gallery_items = wp.media({
-				title: "Selecione seu anexo",
+				title: __('media_title', 'Selecione seu anexo'),
 				button: {
-					text: "linkar anexo"
+					text: __('media_button', 'linkar anexo')
 				},
 				states: [
 					new wp.media.controller.Library({
-						title: "linkar anexo",
+						title: __('media_button', 'linkar anexo'),
 						filterable: 'all',
 						multiple: true
 					})
@@ -131,13 +136,13 @@
 
 		function updateURl(position) {
 			var frame = wp.media({
-				title: "Selecione seu anexo",
+				title: __('media_title', 'Selecione seu anexo'),
 				button: {
-					text: "linkar anexo"
+					text: __('media_button', 'linkar anexo')
 				},
 				states: [
 					new wp.media.controller.Library({
-						title: "linkar anexo",
+						title: __('media_button', 'linkar anexo'),
 						filterable: 'all',
 						multiple: false
 					})
@@ -206,13 +211,13 @@
 		
 		function addlinkdata(position) {
 			var frame = wp.media({
-				title: "Selecione seu anexo",
+				title: __('media_title', 'Selecione seu anexo'),
 				button: {
-					text: "linkar anexo"
+					text: __('media_button', 'linkar anexo')
 				},
 				states: [
 					new wp.media.controller.Library({
-						title: "linkar anexo",
+						title: __('media_button', 'linkar anexo'),
 						filterable: 'all',
 						multiple: true
 					})
