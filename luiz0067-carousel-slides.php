@@ -21,14 +21,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Load plugin textdomain for internationalization
- */
-function luiz0067_carousel_load_textdomain() {
-	load_plugin_textdomain( 'luiz0067-carousel-slides', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-}
-add_action( 'init', 'luiz0067_carousel_load_textdomain' );
-
-/**
  * Enqueue styles and scripts for block frontend and editor canvas
  */
 function luiz0067_carousel_enqueue_block_assets() { 
