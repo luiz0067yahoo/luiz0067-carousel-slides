@@ -23,6 +23,16 @@ function luiz0067_carousel_register_block() {
 			filemtime( $slide_show_js ),
 			true
 		);
+		$i18n_file = dirname( __FILE__ ) . '/../languages/pt-br.json';
+		$i18n_data = array();
+		if ( file_exists( $i18n_file ) ) {
+			$json_content = file_get_contents( $i18n_file );
+			$decoded      = json_decode( $json_content, true );
+			if ( is_array( $decoded ) ) {
+				$i18n_data = $decoded;
+			}
+		}
+		wp_localize_script( 'luiz0067-carousel-block-editor', 'luiz0067_carousel_i18n', $i18n_data );
 	}
 
 	register_block_type( 'luiz0067/carousel-slides', array(
