@@ -49,4 +49,5 @@ function luiz0067_carousel_add_editor_styles() {
 }
 add_action( 'after_setup_theme', 'luiz0067_carousel_add_editor_styles' );
 
+require_once plugin_dir_path( __FILE__ ) . 'plugin/settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'plugin/blocks.php';

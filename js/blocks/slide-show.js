@@ -1,5 +1,8 @@
 (function(wp, $) {
 	'use strict';
+	if (!wp || !wp.blocks || !wp.blocks.registerBlockType || !wp.element) {
+		return;
+	}
 	var el = wp.element.createElement;
 	var i18n = window.luiz0067_carousel_i18n || {};
 	function __(key, fallback) {
@@ -98,40 +101,43 @@
 				props.setAttributes({ id: getNewIdCarousel() });
 			}
 
-			var gallery_items_frame = wp.media.frames.gallery_items = wp.media({
-				title: __('media_title', 'Selecione seu anexo'),
-				button: {
-					text: __('media_button', 'linkar anexo')
-				},
-				states: [
-					new wp.media.controller.Library({
-						title: __('media_button', 'linkar anexo'),
-						filterable: 'all',
-						multiple: true
-					})
-				]
-			});
-
-			gallery_items_frame.on('close', function() {
-				var selection = gallery_items_frame.state().get('selection');
-				selection.each(function(attachment) {
-					initial_title.push(attachment.attributes.title || '');
-					initial_url.push(attachment.attributes.url || '');
-					initial_description.push(attachment.attributes.caption || '');
-					initial_object_fit.push('cover');
-					initial_object_position.push('center center');
+			if (window.wp && wp.media) {
+				wp.media.frames = wp.media.frames || {};
+				var gallery_items_frame = wp.media.frames.gallery_items = wp.media({
+					title: __('media_title', 'Selecione seu anexo'),
+					button: {
+						text: __('media_button', 'linkar anexo')
+					},
+					states: [
+						new wp.media.controller.Library({
+							title: __('media_button', 'linkar anexo'),
+							filterable: 'all',
+							multiple: true
+						})
+					]
 				});
-				if (selection.length > 0) {
-					props.setAttributes({
-						title: initial_title,
-						url: initial_url,
-						description: initial_description,
-						objectFit: initial_object_fit,
-						objectPosition: initial_object_position
+
+				gallery_items_frame.on('close', function() {
+					var selection = gallery_items_frame.state().get('selection');
+					selection.each(function(attachment) {
+						initial_title.push(attachment.attributes.title || '');
+						initial_url.push(attachment.attributes.url || '');
+						initial_description.push(attachment.attributes.caption || '');
+						initial_object_fit.push('cover');
+						initial_object_position.push('center center');
 					});
-				}
-			});
-			gallery_items_frame.open();
+					if (selection.length > 0) {
+						props.setAttributes({
+							title: initial_title,
+							url: initial_url,
+							description: initial_description,
+							objectFit: initial_object_fit,
+							objectPosition: initial_object_position
+						});
+					}
+				});
+				gallery_items_frame.open();
+			}
 		}
 
 		function updateURl(position) {
@@ -352,34 +358,34 @@
 		var currentBgSize = bgSizeMapping[objectFitVal] || 'cover';
 
 		var sidebarInspector = (InspectorControls && PanelBody && SelectControl) ? el(InspectorControls, {},
-			el(PanelBody, { title: 'Configurações do Slide ' + (currIdx + 1), initialOpen: true },
+			el(PanelBody, { title: __('inspector_slide_settings', 'Configurações do Slide') + ' ' + (currIdx + 1), initialOpen: true },
 				el(SelectControl, {
-					label: 'Ajuste da Imagem (object-fit)',
+					label: __('inspector_object_fit_label', 'Ajuste da Imagem (object-fit)'),
 					value: objectFitVal,
 					options: [
-						{ label: 'cover (Cobrir tela - padrão)', value: 'cover' },
-						{ label: 'contain (Conter imagem inteira)', value: 'contain' },
-						{ label: 'fill (Preencher esticando)', value: 'fill' },
-						{ label: 'scale-down (Reduzir proporcional)', value: 'scale-down' },
-						{ label: 'none (Tamanho original sem ajuste)', value: 'none' }
+						{ label: __('fit_cover', 'cover (Cobrir tela - padrão)'), value: 'cover' },
+						{ label: __('fit_contain', 'contain (Conter imagem inteira)'), value: 'contain' },
+						{ label: __('fit_fill', 'fill (Preencher esticando)'), value: 'fill' },
+						{ label: __('fit_scale_down', 'scale-down (Reduzir proporcional)'), value: 'scale-down' },
+						{ label: __('fit_none', 'none (Tamanho original sem ajuste)'), value: 'none' }
 					],
 					onChange: function(newFit) {
 						updateObjectFit(currIdx, newFit);
 					}
 				}),
 				el(SelectControl, {
-					label: 'Posição da Imagem (object-position)',
+					label: __('inspector_object_position_label', 'Posição da Imagem (object-position)'),
 					value: objectPositionVal,
 					options: [
-						{ label: 'top left (Topo Esquerda)', value: 'top left' },
-						{ label: 'top center (Topo Centro)', value: 'top center' },
-						{ label: 'top right (Topo Direita)', value: 'top right' },
-						{ label: 'center left (Centro Esquerda)', value: 'center left' },
-						{ label: 'center center (Centro - padrão)', value: 'center center' },
-						{ label: 'center right (Centro Direita)', value: 'center right' },
-						{ label: 'bottom left (Base Esquerda)', value: 'bottom left' },
-						{ label: 'bottom center (Base Centro)', value: 'bottom center' },
-						{ label: 'bottom right (Base Direita)', value: 'bottom right' }
+						{ label: __('pos_top_left', 'top left (Topo Esquerda)'), value: 'top left' },
+						{ label: __('pos_top_center', 'top center (Topo Centro)'), value: 'top center' },
+						{ label: __('pos_top_right', 'top right (Topo Direita)'), value: 'top right' },
+						{ label: __('pos_center_left', 'center left (Centro Esquerda)'), value: 'center left' },
+						{ label: __('pos_center_center', 'center center (Centro - padrão)'), value: 'center center' },
+						{ label: __('pos_center_right', 'center right (Centro Direita)'), value: 'center right' },
+						{ label: __('pos_bottom_left', 'bottom left (Base Esquerda)'), value: 'bottom left' },
+						{ label: __('pos_bottom_center', 'bottom center (Base Centro)'), value: 'bottom center' },
+						{ label: __('pos_bottom_right', 'bottom right (Base Direita)'), value: 'bottom right' }
 					],
 					onChange: function(newPos) {
 						updateObjectPosition(currIdx, newPos);
@@ -397,7 +403,7 @@
 			onChange: function(e) {
 				updateDescription(currIdx, e.target.value);
 			},
-			placeholder: 'Coloque seu texto aqui até 100 caracteres...',
+			placeholder: __('desc_placeholder', 'Coloque seu texto aqui até 100 caracteres...'),
 			style: { 
 				color: "#f0f0f0", 
 				textShadow: "1px 1px 8px rgba(0, 0, 0, 0.8)", 
@@ -436,11 +442,11 @@
 					className: 'btn-group shadow-sm',
 					style: { position: 'absolute', top: '15px', left: '15px', zIndex: 10000, borderRadius: '6px', overflow: 'hidden' }
 				},
-					el('button', {
+				el('button', {
 						key: 'btn-add-' + currIdx,
 						type: 'button', 							
 						className: 'btn btn-primary btn-sm',
-						title: "Adicionar Novo Slide",
+						title: __('btn_add_slide', 'Adicionar Novo Slide'),
 						onClick: function() { addlinkdata(currIdx); },
 						style: { width: '36px', height: '32px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }
 					}, 
@@ -451,7 +457,7 @@
 							key: 'btn-img-' + currIdx,
 							type: 'button',
 							className: 'btn btn-success btn-sm',
-							title: 'Editar Imagem do Slide',
+							title: __('btn_edit_image', 'Editar Imagem do Slide'),
 							style: { width: '36px', height: '32px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' },
 							onClick: function() { updateURl(currIdx); }
 						},
@@ -470,7 +476,7 @@
 							boxShadow: 'none',
 							width: 'auto'
 						},
-						title: 'Ajuste da Imagem (object-fit)',
+						title: __('inspector_object_fit_label', 'Ajuste da Imagem (object-fit)'),
 						value: objectFitVal,
 						onChange: function(e) {
 							updateObjectFit(currIdx, e.target.value);
@@ -495,7 +501,7 @@
 							boxShadow: 'none',
 							width: 'auto'
 						},
-						title: 'Posição da Imagem (object-position)',
+						title: __('inspector_object_position_label', 'Posição da Imagem (object-position)'),
 						value: objectPositionVal,
 						onChange: function(e) {
 							updateObjectPosition(currIdx, e.target.value);
@@ -515,7 +521,7 @@
 						key: 'btn-remove-' + currIdx,
 						type: 'button', 							
 						className: 'btn btn-danger btn-sm',
-						title: "Excluir Slide Atual",
+						title: __('btn_delete_slide', 'Excluir Slide Atual'),
 						onClick: function() { removelinkdata(currIdx); },
 						style: { width: '36px', height: '32px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }
 					}, 
@@ -538,7 +544,7 @@
 					}
 				}, 
 					el('i', { className: 'fas fa-images', 'aria-hidden': 'true' }),
-					el('span', {}, 'Slide ' + (currIdx + 1) + ' - ' + (sizelines || 1))
+					el('span', {}, __('slide_badge_prefix', 'Slide') + ' ' + (currIdx + 1) + ' - ' + (sizelines || 1))
 				),
 				el('div', 
 					{ 
@@ -580,7 +586,7 @@
 								width: "100%"
 							},
 							value: titles[currIdx] || '',
-							placeholder: 'Coloque seu título aqui até 50 caracteres...'
+							placeholder: __('title_placeholder', 'Coloque seu título aqui até 50 caracteres...')
 						})
 					),
 					descField
@@ -603,7 +609,7 @@
 						},
 						className: (bIdx === currIdx) ? "active" : "",
 						'aria-current': (bIdx === currIdx) ? 'true' : undefined,
-						'aria-label': (titles[bIdx] ? titles[bIdx] : 'Slide ' + (bIdx + 1)) + " "
+						'aria-label': (titles[bIdx] ? titles[bIdx] : __('slide_badge_prefix', 'Slide') + ' ' + (bIdx + 1)) + " "
 					})
 				);
 			})(b);
@@ -629,7 +635,7 @@
 						{
 							type: 'button',
 							className: 'carousel-control-prev',
-							title: 'Slide Anterior',
+							title: __('prev_slide', 'Slide Anterior'),
 							style: {
 								position: 'absolute',
 								top: '50%',
@@ -660,7 +666,7 @@
 						{
 							type: 'button',
 							className: 'carousel-control-next',
-							title: 'Próximo Slide',
+							title: __('next_slide', 'Próximo Slide'),
 							style: {
 								position: 'absolute',
 								top: '50%',
@@ -834,8 +840,9 @@
 					)
 				)
 			)
-		);  
-	});
+		);
+	}
+});
 })(window.wp, window.jQuery);
 
 
