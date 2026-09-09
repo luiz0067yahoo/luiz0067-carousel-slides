@@ -153,9 +153,15 @@ if (Test-Path $screenshot1) {
 }
 
 Write-Host "`nArquivos sincronizados com sucesso!" -ForegroundColor Green
-Write-Host "Próximo passo: Abrir o TortoiseSVN para verificar (TortoiseSVN > Add... para novos arquivos) e Commit." -ForegroundColor Yellow
 
 $tortoiseProc = "C:\Program Files\TortoiseSVN\bin\TortoiseProc.exe"
-if ($LaunchTortoiseCommit -and (Test-Path $tortoiseProc)) {
-    & $tortoiseProc /command:commit /path:"$SvnRoot" /logmsg:"Releasing version $Version"
+if (Test-Path $tortoiseProc) {
+    Write-Host "`n[TortoiseSVN] Abrindo assistente para registrar arquivos no SVN..." -ForegroundColor Cyan
+    Start-Process $tortoiseProc -ArgumentList "/command:add", "/path:`"$SvnRoot`"" -Wait
+    
+    Write-Host "`n[TortoiseSVN] Abrindo janela de Commit para liberar a versão $Version..." -ForegroundColor Cyan
+    Start-Process $tortoiseProc -ArgumentList "/command:commit", "/path:`"$SvnRoot`"", "/logmsg:`"Releasing version $Version: Initial release of luiz0067 Carousel Slides`""
+} else {
+    Write-Host "`nAbra o TortoiseSVN manualmente em $SvnRoot para executar 'Add' e 'Commit'." -ForegroundColor Yellow
 }
+
