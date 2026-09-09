@@ -1,0 +1,17 @@
+# Development and version control
+.git
+.github
+.gitignore
+.distignore
+
+# Documentation for GitHub only
+README.md
+
+# Build and release artifacts
+*.zip
+*.tar.gz
+scripts/
+
+# OS specific files
+.DS_Store
+Thumbs.db
