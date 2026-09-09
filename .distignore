@@ -11,6 +11,9 @@ README.md
 *.zip
 *.tar.gz
 scripts/
+screenshot*.png
+tags/
+trunk/
 
 # OS specific files
 .DS_Store
