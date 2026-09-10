@@ -101,6 +101,7 @@ luiz0067-carousel-slides/
 - **Luiz Fernando Brogliatto Ferreira**
 - WordPress.org: [@luiz0067](https://profiles.wordpress.org/luiz0067/)
 - GitHub: [@luiz0067yahoo](https://github.com/luiz0067yahoo)
+- LinkedIn: [Luiz Fernando Brogliatto Ferreira](https://www.linkedin.com/in/luiz-ferreira-260277379/)
 
 ---
 
