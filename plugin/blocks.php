@@ -13,11 +13,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Get the active language code for the plugin
  *
- * @return string Language code (pt-br, en, es)
+ * @return string Language code (pt-br, en, es, it)
  */
 function luiz0067_carousel_get_current_language() {
 	$saved_lang = get_option( 'luiz0067_carousel_language', 'auto' );
-	if ( 'auto' !== $saved_lang && in_array( $saved_lang, array( 'pt-br', 'en', 'es' ), true ) ) {
+	if ( 'auto' !== $saved_lang && in_array( $saved_lang, array( 'pt-br', 'en', 'es', 'it' ), true ) ) {
 		return $saved_lang;
 	}
 
@@ -28,6 +28,8 @@ function luiz0067_carousel_get_current_language() {
 		return 'pt-br';
 	} elseif ( strpos( $locale, 'es' ) === 0 ) {
 		return 'es';
+	} elseif ( strpos( $locale, 'it' ) === 0 ) {
+		return 'it';
 	}
 	return 'en';
 }

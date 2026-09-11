@@ -33,7 +33,7 @@ add_action( 'admin_init', 'luiz0067_carousel_register_settings' );
  * @return string
  */
 function luiz0067_carousel_sanitize_language( $input ) {
-	$valid_languages = array( 'auto', 'pt-br', 'en', 'es' );
+	$valid_languages = array( 'auto', 'pt-br', 'en', 'es', 'it' );
 	if ( in_array( $input, $valid_languages, true ) ) {
 		return $input;
 	}
@@ -114,6 +114,9 @@ function luiz0067_carousel_render_settings_page() {
 									</option>
 									<option value="es" <?php selected( $current_lang, 'es' ); ?>>
 										Español
+									</option>
+									<option value="it" <?php selected( $current_lang, 'it' ); ?>>
+										Italiano
 									</option>
 								</select>
 								<p class="description" style="margin-top: 8px;">
